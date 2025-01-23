@@ -9,6 +9,7 @@ langgraph
 bing-results-scraper
 pdfplumber
 lxml_html_clean
+aiohttp==3.9.0b0
 newspaper3k
 chromadb
 wikipedia
