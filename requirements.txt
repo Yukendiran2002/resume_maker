@@ -21,3 +21,7 @@ google-search-results
 requests
 bs4
 streamlit_chat
+MainContentExtractor
+aiofiles
+mistune
+md2pdf
