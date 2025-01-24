@@ -1,5 +1,4 @@
 from main_content_extractor import MainContentExtractor
-from playwright.sync_api import sync_playwright
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional
 from langchain.tools import tool

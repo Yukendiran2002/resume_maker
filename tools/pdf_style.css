@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', serif;
+    font-family: 'Helvetica', serif;
     font-size: 12pt; /* standard size for academic papers */
     line-height: 1.6; /* for readability */
     color: #333; /* softer on the eyes than black */
@@ -9,7 +9,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Arial', serif;
+    font-family: 'Helvetica', serif;
     color: #000; /* darker than the body text */
     margin-top: 1em; /* space above headers */
 }

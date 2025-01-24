@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langgraph.prebuilt import create_react_agent
 import google.generativeai as genai
-from tools import  google_search, extract_content, write_text_to_md, write_md_to_pdf, write_md_to_word
+from tools import  extract_content, write_text_to_md, write_md_to_pdf, write_md_to_word, display_pdf, duckduckgo_general_search, duckduckgo_image_search, duckduckgo_news_search, duckduckgo_video_search, scrape_jobs_tool
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.tools import Tool
@@ -17,6 +17,11 @@ import sys
 nest_asyncio.apply()
 # Streamlit Interface for Tool Management
 
+display_pdf_tool = Tool(
+    name="DisplayPDF",
+    func=lambda path: display_pdf(path),
+    description="Displays a PDF file. Input: File path of the PDF.",
+)
 write_md_tool = Tool(
     name="WriteMarkdown",
     func=lambda text: asyncio.run(write_text_to_md(text, "output")),  # Replace "output" with your desired path
@@ -241,19 +246,21 @@ class ToolRegistry:# Add a method to get active tools in ToolRegistry
 tool_registry = ToolRegistry()
 def register_tools():
     if not hasattr(tool_registry, "_is_registered"):
-        tool_registry.register_tool("google_search", google_search)
         tool_registry.register_tool("extract_content", extract_content)
         tool_registry.register_tool("write_md_tool", write_md_tool)
         tool_registry.register_tool("write_pdf_tool", write_pdf_tool)
         tool_registry.register_tool("write_word_tool", write_word_tool)
-        # tool_registry.register_tool("bing_search",bing_search)
+        tool_registry.register_tool("display_pdf_tool", display_pdf_tool)
+        tool_registry.register_tool("duckduckgo_general_search", duckduckgo_general_search)
+        tool_registry.register_tool("duckduckgo_image_search", duckduckgo_image_search)
+        tool_registry.register_tool("duckduckgo_news_search", duckduckgo_news_search)
+        tool_registry.register_tool("duckduckgo_video_search", duckduckgo_video_search)
+        tool_registry.register_tool("scrape_jobs_tool", scrape_jobs_tool)
         # Mark as registered
         tool_registry._is_registered = True
 
 # Register the tools if not already registered
 register_tools()
-# st.sidebar.title("Tool Selection")
-# enabled = st.sidebar.multiselect("Select Tools", tool_registry.list_tools_name())
 enabled = tool_registry.list_tools_name()
 for tool_name in tool_registry.list_tools_name():
     tool_registry.toggle_tool(tool_name, tool_name in enabled)

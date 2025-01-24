@@ -12,12 +12,17 @@ lxml_html_clean
 newspaper3k
 chromadb
 wikipedia
+mistune
+aiofiles
+md2pdf
 pypdf
 gnews
 langchain_openai
 langchain_experimental
 openai
+MainContentExtractor
 google-search-results
 requests
 bs4
 streamlit_chat
+duckduckgo_search
