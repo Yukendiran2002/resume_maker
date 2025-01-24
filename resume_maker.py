@@ -274,7 +274,7 @@ def process_input(user_input):
         api_key=st.session_state.api
     )
     agent = create_structured_chat_agent(llm, tools, prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools,return_intermediate_steps=True, early_stopping_method="force", verbose=True,handle_parsing_errors=True)
+    agent_executor = AgentExecutor(agent=agent, tools=tools,return_intermediate_steps=True, early_stopping_method="force", verbose=False,handle_parsing_errors=True)
     agent_with_chat_history = RunnableWithMessageHistory(
         agent_executor,
         lambda session_id: st.session_state["memory"],

@@ -45,7 +45,6 @@ async def write_md_to_pdf(text: str, path: str) -> str:
         css_path = Path("pdf_styles.css")
         md2pdf(file_path, md_content=md_content, css_file_path=css_path if css_path.exists() else None)
         print(f"PDF report written to {file_path}")
-        display_pdf(file_path)
     except Exception as e:
         print(f"Error converting Markdown to PDF: {e})")
     return f"PDF report written and saved in {file_path}."
