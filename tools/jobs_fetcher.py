@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 from jobspy import scrape_jobs
 import csv
 import json
+from langchain.tools import tool
 
 # Define the input schema for the tool
 class JobScraperInput(BaseModel):
