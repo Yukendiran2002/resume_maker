@@ -1,21 +1,31 @@
 # Security Policy
 
-## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security vulnerability in this project, please follow the steps below:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+1. **Do not open a public issue.** Instead, send an email to [yukendiranjayachandiran@gmail.com](mailto:yukendiranjayachandiran@gmail.com) with the following details:
+    - A description of the vulnerability.
+    - Steps to reproduce the issue.
+    - Any potential impact or exploit scenarios.
+
+2. **Expect a response within 48 hours.** We will acknowledge the receipt of your report and provide an estimated timeline for a fix.
+
+3. **Coordinate disclosure.** We will work with you to understand the issue and fix it promptly. We ask that you do not disclose the vulnerability publicly until we have released a fix and informed users.
+
+## Supported Versions
+
+We currently support the following versions with security updates:
+
+- Version 1.0
+
+## Security Best Practices
+
+To ensure the security of your deployment, please follow these best practices:
+
+- Keep your software up to date with the latest security patches.
+- Use strong, unique passwords for all accounts.
+- Regularly back up your data.
+- Monitor your systems for unusual activity.
+
+Thank you for helping us keep our project secure.

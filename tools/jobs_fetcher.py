@@ -12,7 +12,7 @@ class JobScraperInput(BaseModel):
         default=["indeed", "linkedin", "glassdoor", "google"],
         description="List of job boards to scrape from.",
     )
-    results_wanted: int = Field(20, description="Number of job results to retrieve for each site.")
+    results_wanted: int = Field(10, description="Number of job results to retrieve for each site.")
     hours_old: int = Field(72, description="Filter jobs posted within the last 'n' hours.")
     proxies: list[str] = Field(
         default=None,
