@@ -37,6 +37,11 @@ write_word_tool = Tool(
     func=lambda text: asyncio.run(write_md_to_word(text, "output")),
     description="Converts Markdown text to a Word document. Input: Markdown text. Output: File path of the Word file.",
 )
+st.set_page_config(layout="wide",
+                   page_title="Resume Maker Chatbot",
+                   page_icon="🤖",
+                   initial_sidebar_state="expanded")   
+st.title("🤖 Resume Maker Chatbot") 
 
 system = '''
     # **You are a Advanced ATS-Friendly Resume Builder with Keyword Matching and Skill Integration**
@@ -176,7 +181,6 @@ prompt = ChatPromptTemplate.from_messages(
         ("human", human),
     ]
 )
-st.subheader("Search Chatbot")
 if "model_list" not in st.session_state:
     st.session_state["model_list"] = []
 if "api" not in st.session_state:
@@ -185,6 +189,8 @@ if "memory" not in st.session_state:
     st.session_state["memory"] = InMemoryChatMessageHistory(session_id="test-session")
 if "model" not in st.session_state:
     st.session_state['model'] = None
+if "chat_button" not in st.session_state:
+    st.session_state["chat_button"] = False
 def model_list():
     if st.session_state.api is not None:
         genai.configure(api_key=st.session_state.api)
@@ -195,7 +201,7 @@ def model_list():
                     if 'flash' in model.name.lower():
                         st.session_state.model_list.append(model.name.split('/')[-1])
 st.sidebar.title("API")
-st.session_state.api = st.sidebar.text_input("Enter your API key")
+st.session_state.api = st.sidebar.text_input("Enter your API key", help="Enter your API key to access the Google Generative AI models. [Click here](https://aistudio.google.com/app/apikey) to get your API key.")
 if st.session_state.model_list == []:
     try:
         model_list()
@@ -205,6 +211,7 @@ if len(st.session_state["model_list"]) > 1:
     st.session_state["model"] = st.sidebar.selectbox(
         "Select Model",
         st.session_state["model_list"],
+        help="Select the model you want to use for the chatbot.",
         index=st.session_state["model_list"].index(st.session_state.get("model", st.session_state["model_list"][0])) if st.session_state.get("model") else 0,
         key="model_select",
     )

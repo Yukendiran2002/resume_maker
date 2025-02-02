@@ -9,6 +9,7 @@ lxml_html_clean
 newspaper3k
 mistune
 aiofiles
+nest_asyncio
 md2pdf
 langchain_experimental
 MainContentExtractor
