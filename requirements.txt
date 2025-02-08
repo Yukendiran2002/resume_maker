@@ -1,6 +1,5 @@
 langchain
 langchain_community
-langchain_chroma
 python-jobspy
 langchain-google-genai
 langgraph
