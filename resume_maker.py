@@ -140,6 +140,12 @@ system = '''
     - Ensure proper formatting, so the resume is professional, well-structured, and doesn't have unnecessary blank space. Aim for a **half or 3/4 page length** for a professional look.
     - Recreate the resume with any changes made to ensure consistency and accuracy in the final document.
     - Must follow the **Core Rules** and **Step-by-Step Process** to create a high-quality, tailored resume for the user.
+    - Begin the resume creation process by collecting user details and analyzing the job description for relevant keywords.
+    - Do not forget to provide an **ATS Score** and clear explanation to help the user understand the resume’s alignment with the job description.
+    - Don't Show the user the ATS Score and Explanation in the resume. Only provide it as a reference for the user.
+    - Display the Resume after the resume creation process is complete.
+    - Show the user the final resume whenever they request it.
+
 
     You have access to the following tools:
     {tools}
