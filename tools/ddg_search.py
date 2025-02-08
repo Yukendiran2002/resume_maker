@@ -1,7 +1,7 @@
 from langchain.tools import tool
 from typing import List, Optional
 from pydantic import BaseModel, Field
-import duckduckgo_search as ddg
+from duckduckgo_search import DDGS
 
 
 # General Search
@@ -16,9 +16,17 @@ class DuckDuckGoSearchInput(BaseModel):
 @tool(args_schema=DuckDuckGoSearchInput)
 def duckduckgo_general_search(query: str, max_results: int, region: str, safesearch: str, time: Optional[str]) -> List[dict]:
     """
-    Perform a general search using the DuckDuckGo search module.
+    Perform a general text search using the updated DuckDuckGo search module.
     """
-    results = ddg.search(query, max_results=max_results, region=region, safesearch=safesearch, time=time)
+    with DDGS() as ddgs:
+        results = ddgs.text(
+            query,
+            region=region,
+            safesearch=safesearch,
+            timelimit=time,  # new API uses 'timelimit' instead of 'time'
+            max_results=max_results,
+            backend="auto"
+        )
     if not results:
         return [{"error": "No results found."}]
     return results
@@ -34,9 +42,14 @@ class DuckDuckGoImageSearchInput(BaseModel):
 @tool(args_schema=DuckDuckGoImageSearchInput)
 def duckduckgo_image_search(query: str, max_results: int, safesearch: str) -> List[dict]:
     """
-    Perform an image search using the DuckDuckGo search module.
+    Perform an image search using the updated DuckDuckGo search module.
     """
-    results = ddg.images(query, max_results=max_results, safesearch=safesearch)
+    with DDGS() as ddgs:
+        results = ddgs.images(
+            keywords=query,
+            safesearch=safesearch,
+            max_results=max_results
+        )
     if not results:
         return [{"error": "No image results found."}]
     return results
@@ -53,9 +66,16 @@ class DuckDuckGoNewsSearchInput(BaseModel):
 @tool(args_schema=DuckDuckGoNewsSearchInput)
 def duckduckgo_news_search(query: str, max_results: int, region: str, safesearch: str) -> List[dict]:
     """
-    Perform a news search using the DuckDuckGo search module.
+    Perform a news search using the updated DuckDuckGo search module.
     """
-    results = ddg.news(query, max_results=max_results, region=region, safesearch=safesearch)
+    with DDGS() as ddgs:
+        results = ddgs.news(
+            query,
+            region=region,
+            safesearch=safesearch,
+            timelimit=None,
+            max_results=max_results
+        )
     if not results:
         return [{"error": "No news results found."}]
     return results
@@ -72,9 +92,16 @@ class DuckDuckGoVideoSearchInput(BaseModel):
 @tool(args_schema=DuckDuckGoVideoSearchInput)
 def duckduckgo_video_search(query: str, max_results: int, region: str, safesearch: str) -> List[dict]:
     """
-    Perform a video search using the DuckDuckGo search module.
+    Perform a video search using the updated DuckDuckGo search module.
     """
-    results = ddg.videos(query, max_results=max_results, region=region, safesearch=safesearch)
+    with DDGS() as ddgs:
+        results = ddgs.videos(
+            query,
+            region=region,
+            safesearch=safesearch,
+            timelimit=None,
+            max_results=max_results
+        )
     if not results:
         return [{"error": "No video results found."}]
     return results
