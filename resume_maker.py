@@ -38,10 +38,54 @@ write_word_tool = Tool(
     description="Converts Markdown text to a Word document. Input: Markdown text. Output: File path of the Word file.",
 )
 st.set_page_config(layout="wide",
-                   page_title="Resume Maker Chatbot",
-                   page_icon="🤖",
-                   initial_sidebar_state="expanded")   
-st.title("🤖 Resume Maker Chatbot") 
+                    page_title="Resume Maker Chatbot",
+                    page_icon="🤖",
+                    initial_sidebar_state="expanded",
+                    menu_items={
+                        'About': """
+                        ## About AI Resume Maker  
+                        **AI Resume Maker** helps you craft professional, ATS-friendly resumes with ease.  
+                        
+                        🔹 **AI-Optimized Suggestions** to enhance your resume  
+                        🔹 **Modern Templates** to fit your industry  
+                        🔹 **Instant PDF Export** for quick applications  
+                        
+                        Start building your perfect resume today and land your dream job faster!
+                        """
+                    }
+                )
+st.header("🤖 Resume Maker Chatbot") 
+# Inject Cloudflare Web Analytics script
+cf_script = """
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+data-cf-beacon='{"token": "85906b90badf470bbca01ff8c8f4922c"}'></script>
+"""
+# Add script to the app
+st.components.v1.html(cf_script, height=0)
+seo_html = """
+<head>
+    <title>AI Resume Maker - Create a Professional Resume in Seconds</title>
+    <meta name="description" content="Build your perfect, ATS-friendly resume with AI. Choose from modern templates and download in seconds.">
+    <meta name="keywords" content="resume builder, AI resume, ATS-friendly, job application, career">
+    <meta name="robots" content="index, follow">
+</head>
+"""
+
+st.components.v1.html(seo_html, height=0)
+seo = """
+# 🚀 AI-Powered Resume Maker  
+Craft a **professional, ATS-friendly resume** in just a few clicks!  
+
+✅ **AI-Optimized**: Tailored suggestions to make your resume stand out  
+🎨 **Custom Templates**: Choose from sleek, modern, and industry-specific designs  
+📄 **Instant PDF Export**: Download a polished resume in seconds  
+💡 **Job-Specific Keywords**: Get insights to match recruiter expectations  
+🔍 **ATS-Ready Formatting**: Ensure your resume passes applicant tracking systems  
+
+Start building your **perfect resume** today and land your dream job faster!  
+"""
+st.components.v1.html(seo, height=0)
+
 
 system = '''
     # **You are a Advanced ATS-Friendly Resume Builder with Keyword Matching and Skill Integration**
